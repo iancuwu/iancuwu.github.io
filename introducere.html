@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Roy-Floyd</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="./script.js" defer></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul class="navigation-bar">
+                <li><a href="./introducere.html#main">Introducere</a></li>
+                <li><a href="./rationament.html">Rationamentul algoritmului</a></li>
+                <li><a href="./exemplificare-cod.html">Exemplificare cod</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main id="main">
+        <div class="layout">
+            <div class="content">
+                <h1 class="mb">ROY-FLOYD</h1>
+                <h3><b>Despre algoritmul Roy-Floyd</b></h3>
+                <p>În jurul anului 1960, a fost descoperit un algoritm pentru drumuri în grafuri orientate de către trei oameni de știință: Robert Floyd, Bernard Roy și Stephen Warshall. Roy-Floyd determină distanțele și drumurile minime între oricare două noduri dintr-un graf.</p>
+                <p>Pentru determinarea un drum minim între două noduri este echivalentă cu a determina un lanț cu număr minim de muchii între cele două noduri.</p>
+            </div>
+            <div class="content">
+                <h2>Caracteristici:</h2>
+                <ul>
+                    <li>Rulează cu un timp de calcul mai mare, deoarece permite găsirea unui drum minim între orice două noduri.</li>
+                    <li>Memoria alocată este de ordin <em>n²</em> (numărul de perechi de noduri).</li>
+                    <li>Roy-Floyd calculează drumul dintre orice două noduri, spre deosebire de Dijkstra, care determină doar de la un nod sursă la toate celelalte.</li>
+                    <li>Poate gestiona drumuri indirecte, folosind noduri intermediare.</li>
+                </ul>
+            </div>
+
+            <div class="content">
+                <h2>Utilizări:</h2>
+                <ul>
+                    <li><strong>Sisteme de navigație și trafic inteligent</strong> - Folosit în aplicații precum Google Maps, Waze, Uber.</li>
+                    <li><strong>Rețele de telecomunicații</strong> - Aplicat în optimizarea rețelelor de fibră optică și conexiuni wireless.</li>
+                    <li><strong>Transport public</strong> - Calcularea celor mai scurte trasee pentru autobuze, trenuri și metrouri.</li>
+                    <li><strong>Logistică și transport</strong> - Optimizarea rutelor pentru livrări (Amazon, DHL, FedEx).</li>
+                </ul>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="layout flex">
+            <code>Realizat de:<br>Iancu David Ioan<br>Brasoveanu Mara<br>Popa Alexia<br>Baleanu Erika</code>
+        </div>
+    </footer>
+</body>
+</html>

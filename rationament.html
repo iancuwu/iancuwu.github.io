@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Raționamentul problemei</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="./style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700&display=swap"
+            rel="stylesheet">
+        <script src="./script.js"></script>
+    </head>
+    
+    <body>
+        <header>
+            <ul class="navigation-bar">
+                <li><a href="./introducere.html#main">Introducere</a></li>
+                <li><a href="./rationament.html">Rationamentul algoritmului</a></li>
+                <li><a href="./exemplificare cod.html">Exemplificare cod</a></li>
+            </ul>
+          </header>
+        <main id="main">
+            <div class="layout">
+                <div class="content">
+                    <h1>Raționamentul problemei</h1>
+                </div>
+                <div class="content">
+                        <h3><b>Cerința problemei</b></h3>
+                            <p> Popescu Dan este în vizită la nepoţii lui aflaţi într-un oraş aglomerat, cu multe străzi şi doreşte să găsească cea mai 
+                                eficientă cale de a ajunge unde are nevoie. Acesta vrea să se raporteze şi la timpul necesar de a ajunge dintr-un punct în altul. 
+                                Se dau n-reprezentând numărul punctelor de plecare şi m-reprezentând numărul străzilor pe care se poate deplasa. Aceste date sunt citite din fișier.   
+              
+
+                            </p>
+                           
+                            <ul style="list-style: decimal">
+                                <li><p><b>Aflarea drumului de cost minim</p></b>
+                                    <p> În cazul determinării drumului minim între oricare două noduri noi avem nevoie orice memorie de ordin n2 (pentru că numărul de perechi de noduri este de ordin n2). 
+                                        Așadar vom folosi în acest caz memorarea prin matrice de adiacență.Aici matricea de adiacență este puțin modificată.  A[i][j] va reprezenta costul muchiei directe de la nodul i
+                                         la nodul . Acolo unde nu este muchie directă se memorează de obicei o valoare care marchează acest lucru. Această matrice se numește “a costurilor” în loc de “de adiacență”
+                                        </p>
+                                        <br><p> La pasul 1 vom lua în calcul ca intermediar nodul 1, adică dacă între două noduri i și j avem
+                                            muchie de la i la 1 și muchie de la 1 la j și suma costurilor celor două muchii este mai mică
+                                            decât muchia directă de la i la j, vom actualiza valoarea A[i][j].Pentru a ne concentra pe detaliile de implementare specifice,vom considera că acolo unde nu e muchie vom avea A[i][j]='x'
+                                            De asemenea, notăm cu 0 distanța de la un nod la el însuși. Folosim același raționament și pentru celelalte și le introducem ca fiind intermediare unul câte unul și vom itera cu un k intermediar 
+                                            de la 1 la n.
+                                     
+                                            <div class=""></div></p>
+                                <p>
+
+                                <div class="code-container">
+                                    <pre class="code-style">
+                                
+                                    void Roy_Floyd() {
+                                        for(k=1;k<=n;k++)
+                                            for(i=1;i<=n;i++)
+                                                for(j=1;j<=n;j++)
+                                                    if(A[i][j]>A[i][k]+A[k][j]) {
+                                                        A[i][j]=A[i][k]+A[k][j];
+                                                        T[i][j]=T[k][j];
+                                                    }
+                                    }
+                                </pre>
+                            </div>
+                              Anterior am determinat doar costul minim al drumurilor, dar folosind matricea T, T[i][j] semnifică nodul aflat imediat înaintea lui j pe drumul 
+                                 minim de la i la j. Secvența următoare permite obținerea nodurilor de pe drum in ordinea de la j la i. Pentru a le obține în ordinea dorită folosim o funcție recursivă.
+                                 <div class="code-container">
+                                    <pre class="code-style">
+                                        void drum(int i,int j) {
+                                            if(j!=0) {
+                                                drum(i,T[i][j]);
+                                                cout <<j<<" ";
+
+                                            }
+                                        }       
+                                 </pre>
+                                </div>
+                                </li>
+                                <li>
+                                    <p><b>Timpul minim necesar</b></p>
+                                    <p>Pentru o aplicabilitate mai sporită a programului, am considerat că harta este a unei localități. În consecință,  
+                                      limita maximă legală este de 50 km/oră. Acest subprogram are rolul de a estima cât va dura deplasarea de la un punct la altul, prin costul fiecarei muchii.Subprogramul
+                                      returnează durată rotunjită a drumului în minute.
+
+                                    </p>
+
+                                    <div class="code-container">
+                                        <pre class="code-style">
+                                            int timpNecesar() {
+                                                float costTotal;
+                                                costTotal= costDrum(4,1);
+                                                return round(costTotal*1000/833.33);
+                                            }
+
+                                        </pre>
+                                    </div>
+                                    <div class="flex content-2">
+                                        
+
+
+                                    </div>
+                                </li>
+                                <li>
+                                    <p><b>Subprogramul ....</b></p>
+                                    <p</p>
+                                    <div class="code-container">
+                                        <pre class="code-style">
+                            void 
+
+                            </pre>
+                            <li>
+                                <p><b>Subprogramul ....</b></p>
+                                <p</p>
+                                <div class="code-container">
+                                    <pre class="code-style">
+                            main 
+
+                        </pre>
+
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+               
+       </main>
+        <footer>
+            <div class="layout flex">
+                <code>Realizat de: <br/>Iancu David Ioan <br/>Brasoveanu Mara<br/>Popa Alexia<br/>Baleanu Erika</code>
+            </div>
+        </footer>
+    </body>
+</html>
