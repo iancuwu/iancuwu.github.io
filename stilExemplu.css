@@ -14,13 +14,76 @@ body {
     background-size: cover;
     font-family: 'Montserrat', sans-serif;
     color: white;
-    font-size: 20px;
+    font-size: clamp(16px, 1.5vw, 20px);
+    line-height: 1.6;
+    padding: 20px;
 }
 
 a {
     text-decoration: none;
     color: rgb(255, 255, 255);
 }
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+}
+
+/* ============================= */
+/*          CODE BLOCK           */
+/* ============================= */
+pre {
+    background: #1e1e1e;
+    color: #ffffff;
+    padding: 15px;
+    border-radius: 8px;
+    overflow-x: auto; /* Adaugă scrollbar dacă e nevoie */
+    white-space: pre-wrap; /* Permite textului să se împacheteze */
+    word-wrap: break-word; /* Evită depășirea containerului */
+}
+
+code {
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+}
+
+/* ============================= */
+/*          RESPONSIVE           */
+/* ============================= */
+@media (max-width: 1024px) {
+    body {
+        font-size: clamp(14px, 1.2vw, 18px);
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        font-size: 16px;
+    }
+    .container {
+        padding: 10px;
+    }
+    pre {
+        font-size: 13px;
+        padding: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        font-size: 14px;
+    }
+    .container {
+        padding: 5px;
+    }
+    pre {
+        font-size: 12px;
+        padding: 8px;
+    }
+}
+
+
 
 /* ============================= */
 /*         STILURI ORIGINALE     */
@@ -326,32 +389,7 @@ header {
     border-radius: 10px;
     margin-bottom: 20px;
 }
-/* ============================= */
-/*          RESPONSIVE           */
-/* ============================= */
-@media (max-width: 1024px) {
-    body {
-        font-size: clamp(14px, 1.2vw, 18px);
-    }
-}
 
-@media (max-width: 768px) {
-    body {
-        font-size: 16px;
-    }
-    .container {
-        padding: 10px;
-    }
-}
-
-@media (max-width: 480px) {
-    body {
-        font-size: 14px;
-    }
-    .container {
-        padding: 5px;
-    }
-}
 /* Asigură-te că bara de navigație folosește flexbox */
 .navigation-bar {
     display: flex;

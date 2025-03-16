@@ -84,25 +84,7 @@ code {
 }
 
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    scroll-behavior: smooth;
-    scroll-margin-top: 80px;
-}  
 
-body {
-    background: url('edge-computing.jpg') no-repeat center center fixed;
-    background-size: cover;
-    font-family: 'Montserrat', sans-serif;
-    color: white;
-}
-
-a {
-    text-decoration: none;
-    color: rgb(255, 255, 255);
-}
 
 .gradient {
     position: absolute;
