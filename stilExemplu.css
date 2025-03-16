@@ -1,3 +1,6 @@
+/* ============================= */
+/*          RESET & BASIC        */
+/* ============================= */
 * {
     margin: 0;
     padding: 0;
@@ -11,6 +14,7 @@ body {
     background-size: cover;
     font-family: 'Montserrat', sans-serif;
     color: white;
+    font-size: 20px;
 }
 
 a {
@@ -18,6 +22,9 @@ a {
     color: rgb(255, 255, 255);
 }
 
+/* ============================= */
+/*         STILURI ORIGINALE     */
+/* ============================= */
 .gradient {
     position: absolute;
     bottom: 0; 
@@ -30,9 +37,8 @@ a {
 }
 
 .layout {
-    width: 70%;
+    width: 80%;
     margin: auto;
-    text-align: center;  /* Centrat */
 }
 
 .hero {
@@ -61,15 +67,15 @@ a {
     padding: 8px 14px;
     background-image: linear-gradient(to bottom, #005f99, #003f66);
     border-radius: 24px;
-    color: white;  /* Textul alb */
+    color: black;
     border: none;
-    font-family: 'Montserrat', sans-serif;  /* Font Montserrat */
+    box-shadow: 0px 9px 30px 0px rgba(208, 194, 194, 0.75);
     transition: ease-in-out 0.1s;
 }
 
 .button > a {
     font-size: 16px;
-    color: white;
+    color: #090909;
     font-weight: 300;
 }
 
@@ -87,33 +93,38 @@ a {
 
 h1 {
     text-align: center;
-    font-size: 36px;
+    font-size: 48px;
     font-weight: 700;
-    padding-top: 30px;
-    color: rgb(255, 255, 255);
+    padding-top: 60px;
+    text-decoration: rgb(187, 78, 45) underline;
+    color: rgb(240, 139, 108);
 }
 
 .mb {
     margin-bottom: 24px;
 }
+.mb-2 {
+    margin-bottom: 12px;
+}
 
 h2 {
-    font-size: 28px;
+    font-size: 32px;
     font-weight: 600;
     padding-left: 24px;
     color: rgb(255, 255, 255);
 }
 
 h3 {
-    font-size: 22px;
+    font-size: 30px;
     font-weight: 500;
     padding-left: 24px;
     color: rgb(255, 255, 255);
 }
 
 p {
-    font-size: 18px;
-    color: #c4ecffe6;
+    color: #ffffffe6;
+    font-size: 22px;
+    padding: 10px;
 }
 
 .content {
@@ -131,6 +142,7 @@ ul {
 
 li {
     margin-left: 40px;
+    font-size: 22px;
 }
 
 figure > p {
@@ -156,8 +168,8 @@ figure > p {
 }
 
 footer {
-    background-color: #1e2020;
-    padding: 20px 0;
+    background-color: #1e2020d3;
+    padding: 10px 0;
 }
 
 header {
@@ -168,7 +180,7 @@ header {
     height: 52px;
     transition: ease-in-out 0.2s;
     z-index: 20;
-    background-color: #1e2020;
+    background-color: #1e2020d3;
 }
 
 .navigation-bar {
@@ -181,6 +193,7 @@ header {
 
 .navigation-bar > li {
     transition: ease-in-out 0.2s;
+    margin-left: 24px; /* opțional, ca să nu fie lipite */
 }
 
 .navigation-bar > li:hover {
@@ -199,8 +212,8 @@ header {
 }
 
 .code-style {
-    font-size: 14px;
-    line-height: 18px;
+    font-size: 18px;
+    line-height: 22px;
     background-color: #1f1f1f;
     color: #ffffffe3;
     padding: 24px;
@@ -209,72 +222,168 @@ header {
 }
 
 .code-container {
-    padding: 16px;
-    margin: 20px auto;
-    max-width: 800px;  /* Limitează lățimea pentru a nu ocupa întregul ecran */
-    background-color: #2a2a2a;  /* Fundal gri */
-    border-radius: 8px;
+    padding: 6px;
+    margin: 6px;
 }
 
+/* ============================= */
+/*  MENIURI DROP-DOWN ORIGINALE */
+/* ============================= */
 .controls {
     margin-bottom: 20px;
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    text-align: center;
+    gap: 10px;
 }
 
 .styled-select {
     padding: 8px;
-    background-color: #333;
+    background-color: #2f2f2f;
     color: white;
     border: 1px solid #444;
     border-radius: 8px;
     font-size: 14px;
-    width: 200px;
-    margin: 0 auto;
 }
 
-button {
-    padding: 10px 20px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #45a049;
-}
-
+/* Dacă mai folosești canvas */
 #canvas-container {
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     margin-top: 20px;
 }
 
-#mapCanvas {
-    border: 2px solid #444;
-    border-radius: 8px;
+/* ============================= */
+/*     LAYOUT: 3 COLOANE         */
+/* ============================= */
+.controls-result-legend {
+    display: flex;
+    flex-direction: row;
+    justify-content: center; /* sau space-evenly / space-around */
+    align-items: flex-start;
+    gap: 30px;
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 30px;
 }
 
-/* Modificări pentru graf */
-#mapCanvas {
-    border: 2px solid #444;
-    border-radius: 8px;
-    background-color: #2a2a2a; /* Fundal gri pentru canvas */
+/* Caseta cu drop-down */
+.controls-box {
+    background-color: rgba(30,32,32,0.8);
+    padding: 20px;
+    border-radius: 12px;
+    min-width: 200px;
 }
 
-/* Modificare pentru costurile muchiilor */
-#mapCanvas text {
-    font-family: 'Montserrat', sans-serif; /* Folosirea fontului Montserrat */
-    fill: #f0f0f0; /* Culoare mai deschisă pentru textul costurilor (gri foarte deschis) */
-    font-size: 14px; /* Mărimea textului mai mare pentru vizibilitate */
+/* Caseta de rezultat (coloana din mijloc) */
+.result-box {
+    background-color: rgba(30,32,32,0.8);
+    padding: 20px;
+    border-radius: 12px;
+    min-width: 250px;
+    max-width: 400px;
+    text-align: center;
 }
 
+/* Caseta cu legenda (coloana din dreapta) */
+.legend-box {
+    background-color: rgba(30,32,32,0.8);
+    padding: 20px;
+    border-radius: 12px;
+    min-width: 200px;
+}
 
-canvas {
-    display: block;
-    margin: 0 auto; /* Centrat pe pagină */
+.legend-box h2 {
+    margin-bottom: 10px;
+    font-size: 28px;
+    color: #ffffff;
+    text-align: left;
+}
+
+.legend-box ul {
+    list-style: none;
+    text-align: left;
+    margin-top: 10px;
+}
+
+.legend-box li {
+    margin-bottom: 6px;
+}
+
+/* ============================= */
+/*   IMAGINEA GRAFULUI (DACA AI)  */
+/* ============================= */
+.graph-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.graph-image {
+    width: 550px;
+    max-width: 90%;
+    border: 2px solid white;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+/* ============================= */
+/*          RESPONSIVE           */
+/* ============================= */
+@media (max-width: 1024px) {
+    body {
+        font-size: clamp(14px, 1.2vw, 18px);
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        font-size: 16px;
+    }
+    .container {
+        padding: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        font-size: 14px;
+    }
+    .container {
+        padding: 5px;
+    }
+}
+/* Asigură-te că bara de navigație folosește flexbox */
+.navigation-bar {
+    display: flex;
+    align-items: center;
+    /* Poți păstra justify-content: baseline dacă dorești, dar pentru aliniere la dreapta folosim margin-left: auto pe buton */
+}
+
+/* Stil pentru elementul buton de descărcare */
+.navigation-bar li.download-btn {
+    margin-left: auto; /* împinge elementul la dreapta */
+    padding-right: 12px;
+}
+
+/* Stil pentru link-ul din buton */
+.download-btn a {
+    font-weight: bold;
+    color: #ffcc00; /* culoare distinctă */
+    padding: 8px 12px;
+    border: 1px solid #ffcc00;
+    border-radius: 4px;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.8); /* efect glow */
+    transition: all 0.2s ease-in-out;
+}
+
+/* Efect la hover */
+.download-btn a:hover {
+    background-color: #ffcc00;
+    color: #000;
+    transform: scale(1.05);
+}
+
+/* Efect la click (active) */
+.download-btn a:active {
+    transform: scale(0.95);
 }

@@ -1,3 +1,6 @@
+/* ============================= */
+/*          RESET & BASIC        */
+/* ============================= */
 * {
     margin: 0;
     padding: 0;
@@ -11,7 +14,89 @@ body {
     background-size: cover;
     font-family: 'Montserrat', sans-serif;
     color: white;
-    font-size: 20px;
+    font-size: clamp(16px, 1.5vw, 20px);
+    line-height: 1.6;
+    padding: 20px;
+}
+
+a {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+}
+
+/* ============================= */
+/*          CODE BLOCK           */
+/* ============================= */
+pre {
+    background: #1e1e1e;
+    color: #ffffff;
+    padding: 15px;
+    border-radius: 8px;
+    overflow-x: auto; /* Adaugă scrollbar dacă e nevoie */
+    white-space: pre-wrap; /* Permite textului să se împacheteze */
+    word-wrap: break-word; /* Evită depășirea containerului */
+}
+
+code {
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+}
+
+/* ============================= */
+/*          RESPONSIVE           */
+/* ============================= */
+@media (max-width: 1024px) {
+    body {
+        font-size: clamp(14px, 1.2vw, 18px);
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        font-size: 16px;
+    }
+    .container {
+        padding: 10px;
+    }
+    pre {
+        font-size: 13px;
+        padding: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        font-size: 14px;
+    }
+    .container {
+        padding: 5px;
+    }
+    pre {
+        font-size: 12px;
+        padding: 8px;
+    }
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    scroll-margin-top: 80px;
+}  
+
+body {
+    background: url('edge-computing.jpg') no-repeat center center fixed;
+    background-size: cover;
+    font-family: 'Montserrat', sans-serif;
+    color: white;
 }
 
 a {
@@ -119,6 +204,7 @@ p {
     color: #ffffffe6;
     font-size: 22px;
     padding: 10px;
+    text-indent: 20px;
 }
 
 .content {
@@ -239,4 +325,39 @@ header {
     display: flex;
     justify-content: flex-end;
     margin-top: 20px;
+}
+/* Asigură-te că bara de navigație folosește flexbox */
+.navigation-bar {
+    display: flex;
+    align-items: center;
+    /* Poți păstra justify-content: baseline dacă dorești, dar pentru aliniere la dreapta folosim margin-left: auto pe buton */
+}
+
+/* Stil pentru elementul buton de descărcare */
+.navigation-bar li.download-btn {
+    margin-left: auto; /* împinge elementul la dreapta */
+    padding-right: 12px;
+}
+
+/* Stil pentru link-ul din buton */
+.download-btn a {
+    font-weight: bold;
+    color: #ffcc00; /* culoare distinctă */
+    padding: 8px 12px;
+    border: 1px solid #ffcc00;
+    border-radius: 4px;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.8); /* efect glow */
+    transition: all 0.2s ease-in-out;
+}
+
+/* Efect la hover */
+.download-btn a:hover {
+    background-color: #ffcc00;
+    color: #000;
+    transform: scale(1.05);
+}
+
+/* Efect la click (active) */
+.download-btn a:active {
+    transform: scale(0.95);
 }

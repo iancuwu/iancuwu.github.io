@@ -18,8 +18,11 @@
         <header>
             <ul class="navigation-bar">
                 <li><a href="./index.html#main">Introducere</a></li>
-                <li><a href="./rationament.html">Rationamentul algoritmului</a></li>
+                <li><a href="./rationament.html">Raționamentul algoritmului</a></li>
                 <li><a href="./exemplificare-cod.html">Exemplificare cod</a></li>
+                <li class="download-btn">
+                    <a href="program.zip" download>Descarcă programul</a>
+                  </li>
             </ul>
           </header>
         <main id="main">
@@ -28,73 +31,160 @@
                     <h1>Raționamentul problemei</h1>
                 </div>
                 <div class="content">
-                        <h3><b>Cerința problemei</b></h3>
-                            <p> Popescu Dan este în vizită la nepoţii lui aflaţi într-un oraş aglomerat, cu multe străzi şi doreşte să găsească cea mai 
-                                eficientă cale de a ajunge unde are nevoie. Acesta vrea să se raporteze şi la timpul necesar de a ajunge dintr-un punct în altul. 
-                                Se dau n-reprezentând numărul punctelor de plecare şi m-reprezentând numărul străzilor pe care se poate deplasa. Aceste date sunt citite din fișier.   
-              
-
-                            </p>
-                           
+                    <h3>Noțiuni generale despre funcționare</h3>
+                    <p> În contextul algoritmului Roy-Floyd vom da matricei costurilor următoarea interpretare:
+                        A[i][j] = costul minim al unui drum de la nodul i la nodul j folosind doar muchii directe.</p>
+                    <p>În continuare vom arăta că putem face transformări pas cu pas pentru matricea A astfel încât la
+                        final elementele sale să aibă semnificația:
+                        A[i][j] = costul minim al unui drum de la nodul i la nodul j folosind intermediare orice noduri
+                        ale grafului.
+                        Vom face acest lucru în n pași</p>
+                </div>        
+                <div class="content">
                             <ul style="list-style: decimal">
+                                <li><p><b>Afișarea matricei de cost minim</p></b>
+
+                                 <div class="code-container">
+                                    <pre class="code-style">
+                                        void afisare_matrice(){
+                                            cout &lt;&lt; "MATRICEA COSTURILOR" &lt;&lt; endl
+                                            &lt;&lt; "---------------------------------" &lt;&lt; endl &lt;&lt; endl;
+                                            for(i=1; i&lt;=n; i++) {
+                                                for(j=1; j&lt;=n; j++){
+                                                    if(A[i][j]==100)
+                                                        cout &lt;&lt; setw(3) &lt;&lt; "X" &lt;&lt; ' ';
+                                                    else
+                                                        cout &lt;&lt; setw(3) &lt;&lt; A[i][j] &lt;&lt; " ";
+                                                }
+                                                cout &lt;&lt; endl;
+                                            }
+                                            sleep(2);
+                                            mesaj_final();
+                                        }
+                                            </pre>
+                                        </div>
+                                            
+                        
+                                
+
                                 <li><p><b>Aflarea drumului de cost minim</p></b>
-                                    <p> În cazul determinării drumului minim între oricare două noduri noi avem nevoie orice memorie de ordin n2 (pentru că numărul de perechi de noduri este de ordin n2). 
-                                        Așadar vom folosi în acest caz memorarea prin matrice de adiacență.Aici matricea de adiacență este puțin modificată.  A[i][j] va reprezenta costul muchiei directe de la nodul i
-                                         la nodul . Acolo unde nu este muchie directă se memorează de obicei o valoare care marchează acest lucru. Această matrice se numește “a costurilor” în loc de “de adiacență”
+                                    <p> În cazul determinării drumului minim între oricare două noduri noi avem nevoie orice memorie de ordin n<sup>2</sup> (pentru că numărul de perechi de noduri este de ordin n<sup>2</sup>). 
+                                        Așadar vom folosi în acest caz memorarea prin matrice de adiacență. Aici matricea de adiacență este puțin modificată. <b>A[i][j]</b> va reprezenta costul muchiei directe de la nodul i
+                                         la nodul. Acolo unde nu este muchie directă se memorează de obicei o valoare care marchează acest lucru. Această matrice se numește “a costurilor” în loc de “de adiacență”
                                         </p>
-                                        <br><p> La pasul 1 vom lua în calcul ca intermediar nodul 1, adică dacă între două noduri i și j avem
+                                        <p> Pentru început, vom lua în calcul ca intermediar nodul 1, adică dacă între două noduri i și j avem
                                             muchie de la i la 1 și muchie de la 1 la j și suma costurilor celor două muchii este mai mică
-                                            decât muchia directă de la i la j, vom actualiza valoarea A[i][j].Pentru a ne concentra pe detaliile de implementare specifice,vom considera că acolo unde nu e muchie vom avea A[i][j]='x'
+                                            decât muchia directă de la i la j, vom actualiza valoarea <b>A[i][j]</b>. Pentru a ne concentra pe detaliile de implementare specifice, vom considera că acolo unde nu e muchie vom avea <b>A[i][j]='x'</b>
                                             De asemenea, notăm cu 0 distanța de la un nod la el însuși. Folosim același raționament și pentru celelalte și le introducem ca fiind intermediare unul câte unul și vom itera cu un k intermediar 
-                                            de la 1 la n.
-                                     
-                                            <div class=""></div></p>
-                                <p>
+                                            de la 1 la n.</p>
+                                        <p>Acum este evident că nu ne rămâne decât să introducem nodurile ca intermediar unul câte unul,
+                                            fiecare aplicându-se asupra matricei modificată de cele anterioare.</p>
+                                        <p><b>Observație! </b>Vom itera cu un k intermediar de la 1 la n și vom aplica acest cod pentru fiecare k. Astfel, în afară de cele
+                                            două foruri prin care punem în evidență toate perechile de noduri, vom mai avea unul care pune
+                                            în evidență intermediarul.</p>
+
 
                                 <div class="code-container">
                                     <pre class="code-style">
                                 
                                     void Roy_Floyd() {
-                                        for(k=1;k<=n;k++)
-                                            for(i=1;i<=n;i++)
-                                                for(j=1;j<=n;j++)
+                                        for(k=1;k&lt;;=n;k++)
+                                            for(i=1;i&lt;;=n;i++)
+                                                for(j=1;j&lt;;=n;j++)
                                                     if(A[i][j]>A[i][k]+A[k][j]) {
                                                         A[i][j]=A[i][k]+A[k][j];
                                                         T[i][j]=T[k][j];
                                                     }
                                     }
                                 </pre>
-                            </div>
-                              Anterior am determinat doar costul minim al drumurilor, dar folosind matricea T, T[i][j] semnifică nodul aflat imediat înaintea lui j pe drumul 
-                                 minim de la i la j. Secvența următoare permite obținerea nodurilor de pe drum in ordinea de la j la i. Pentru a le obține în ordinea dorită folosim o funcție recursivă.
-                                 <div class="code-container">
-                                    <pre class="code-style">
-                                        void drum(int i,int j) {
-                                            if(j!=0) {
-                                                drum(i,T[i][j]);
-                                                cout <<j<<" ";
+                                <p> Anterior am determinat doar costul minim al drumurilor iar acum arătăm o modalitate prin care
+                                    găsim și nodurile componente ale unui drum de cost minim. </p>
+                                <p> Vom folosi o matrice suplimentară T în care T[i][j] semnifică: nodul aflat imediat înaintea lui
+                                    j pe drumul minim de la i la j.</p>    
+                                <p> Ținând cont că la început A reprezintă matricea costurilor (echivalent: matricea drmurilor minime
+                                    folosind doar muchii directe),
+                                    vom inițializa:</p>
+                                <p><b>T[i][j] este: </b></p>
+                                    <p><b>✓</b> i, dacă există muchia i,j (deci fiind vorba doar de drumul format din i și j,
+                                    nodul aflat imediat înaintea lui j pe drumul minim de la i la j este chiar i)</p>
+                                    <p><b>✓</b> Valoare nedefinită dacă nu avem muchie de la i la j</p>
+                                <p> Faptul că la un moment dat găsim un intermediar k pentru care <b>A[i][k] + A[k][j] <
+                                    A[i][j]</b> are semnificația: este mai scurt un drum de la i la j care trece prin k. Deci, acest
+                                    drum se compune din drumul minim de la i la k care se concatenează cu drumul minim de la k
+                                    la j. Așadar, drumul minim de la k la j devine ultima porțiune a drumului minim de la i la j.
+                                    Deci ultimul nod înaintea lui j pe drumul minim de la i la j va deveni chiar ultimul nod de
+                                    dinaintea lui j pe drumul minim de la k la j. Așadar, <b>T[i][j] = T[k][j]</b>.</p>
 
-                                            }
-                                        }       
-                                 </pre>
-                                </div>
-                                </li>
-                                <li>
-                                    <p><b>Timpul minim necesar</b></p>
-                                    <p>Pentru o aplicabilitate mai sporită a programului, am considerat că harta este a unei localități. În consecință,  
-                                      limita maximă legală este de 50 km/oră. Acest subprogram are rolul de a estima cât va dura deplasarea de la un punct la altul, prin costul fiecarei muchii.Subprogramul
-                                      returnează durată rotunjită a drumului în minute.
-
-                                    </p>
+                                <p>Odată construit T, pentru a determina drumul minim între nodurile i și j putem folosi
+                                    următoarea secvență:</p>
 
                                     <div class="code-container">
                                         <pre class="code-style">
-                                            int timpNecesar() {
+                                            while (j!=0) {
+                                                cout&lt;&lt;j&lt;&lt;” ”;
+                                                j = T[i][j];
+                                            }
+                                        </pre>
+                                    </div>
+                                    
+                                <p> Ne-am bazat pe faptul că T[i][i] rămâne cu valoarea 0.</p>
+                                <p>Secvența de mai sus permite obținerea nodurilor de pe drum în ordinea de la j la i. Pentru a
+                                    le obține în ordinea dorită avem varianta să le stocăm într-un tablou și apoi să le afișăm invers
+                                    sau varianta de a folosi o funcție recursivă și să afișăm la revenire, ca mai jos </p> 
+
+                                    <div class="code-container">
+                                        <pre class="code-style">
+                                            void drum(int i, int j) {
+                                                if (j!=0) {
+                                                drum(i, T[i][j]);
+                                                cout&lt;&lt;j&lt;&lt;” ”;
+                                                }
+                                            }
+                                        </pre>
+                                    </div>
+
+                            </div>
+                            
+                            <li>
+                                <p><b>Costul drumului minim dintre două puncte alese </b></p>
+                                    
+                                    <div class="code-container">
+                                        <pre class="code-style">
+                                          
+                                            int costDrum(int i, int j) {
+                                                int sum=0;
+                                                while(j!=0) {
+                                                    sum+=A[T[i][j]][j];
+                                                    j=T[i][j];
+                                                }
+                                                if(sum==0) return 0;
+                                                return sum;
+                                            }
+                            </pre>
+                            <p> Variabila sum este inițializată cu 0. → Aceasta va reține costul total al drumului de la i la j. </p>
+                                        
+                            <p>Se parcurge drumul invers, începând de la j, până când j devine 0. </p>
+                                <p>→ <b>j = T[i][j]</b> înseamnă că ne mutăm spre nodul precedent de pe drumul optim dintre i și j.</p>
+                                         
+                            <p>La fiecare pas, se adaugă la sum costul muchiei dintre T[i][j] și j.</p>
+                                        <p>→ <b>sum += A[T[i][j]][j]</b> adună la suma totală costul muchiei dintre nodul anterior și j.</p>
+                                        
+                            <p>Se ajunge la capătul drumului, iar dacă sum este 0, înseamnă că drumul nu există, și se returnează 0.</p> 
+                                       <p>→ Asta acoperă cazul în care i și j nu sunt conectate.</p>
+                                <li>
+                                    <p><b>Timpul minim necesar</b></p>
+                                    <p>Pentru o aplicabilitate mai sporită a programului, am considerat că harta este a unei localități. În consecință,  
+                                      limita maximă legală este de 50 km/oră. Acest subprogram are rolul de a estima cât va dura deplasarea de la un punct la altul, folosind subprogramul <b>costDrum</b>, prin costul fiecarei muchii. Subprogramul
+                                      returnează durată rotunjită a drumului în minute.</p>
+
+                                    <div class="code-container">
+                                        <pre class="code-style">
+                                            int timpNecesar(int x,int y) {
                                                 float costTotal;
-                                                costTotal= costDrum(4,1);
+                                                costTotal= costDrum(x,y);
+                                                if(costTotal==0)return 0;
                                                 return round(costTotal*1000/833.33);
                                             }
-
                                         </pre>
                                     </div>
                                     <div class="flex content-2">
@@ -103,20 +193,72 @@
 
                                     </div>
                                 </li>
-                                <li>
-                                    <p><b>Subprogramul ....</b></p>
-                                    <p</p>
-                                    <div class="code-container">
-                                        <pre class="code-style">
-                            void 
-
-                            </pre>
-                            <li>
-                                <p><b>Subprogramul ....</b></p>
+                                
+                                <p><b>Meniu principal</b></p>
                                 <p</p>
                                 <div class="code-container">
                                     <pre class="code-style">
-                            main 
+                                        int op,cost;
+                                        int x, y;
+                                        citire();
+                                        Roy_Floyd();
+                                        do {
+                                            cout &lt;&lt; "Meniu" &lt; endl &lt;"----------------------------------"
+                                            &lt;&lt;endl;
+                                            cout &lt;&lt; "1. Afisare matrice de cost minim"
+                                            &lt;&lt;endl;
+                                            cout &lt;&lt; "2. Drumul cu costul cel mai mic dintre doua puncte" 
+                                            &lt;&lt; endl;
+                                            cout &lt;&lt; "3. Distanta de la un punct la altul (cost)"
+                                            &lt;&lt;endl;
+                                            cout &lt;&lt; "4. Timpul necesar parcurgerii drumului de la doua puncte 
+                                            alese" << endl;
+                                            cout &lt;&lt; "0. Iesire" 
+                                            &lt;&lt; endl;
+                                            cout &lt;&lt;"----------------------------------" 
+                                            &lt;&lt;endl;
+                                            cout &lt;&lt; "Alege o optiune: ";
+                                        
+                                            cin >> op;
+                                            switch (op) {
+                                                case 1:
+                                                    afisare_matrice();
+                                                    break;
+                                                case 2:
+                                                    citire_drum(x,y);
+                                                    cout &lt;&lt; "Drumul de cost minim de la 
+                                                    "&lt;&lt; x &lt;&lt; " la " &lt;&lt; y &lt;&lt; " este: ";
+                                                    drum(x, y);
+                                                    mesaj_final();
+                                                    break;
+                                                case 3:
+                                                    citire_drum(x,y);
+                                                    cost=costDrum(x,y);
+                                                    if(cost!=0) cout << "Distanta de parcurs (costul) este: " 
+                                                    << cost << " Km";
+                                                    else cout<<"Nu exista drumul specificat! 
+                                                    Alegeti alte puncte.";
+                                                    mesaj_final();
+                                                    break;
+                                                case 4:
+                                                    citire_drum(x,y);
+                                                    cost=costDrum(x,y);
+                                                    if(cost!=0) cout << "Timpul minim necesar este: "
+                                                    << cost<< " minute";
+                                                    else cout<<"Nu exista drumul specificat! 
+                                                    Alegeti alte puncte.";
+                                                    mesaj_final();
+                                                    break;
+                                                case 0:
+                                                    cout << "Iesire din program." << endl;
+                                                    break;
+                                                default:
+                                                    cout << "Optiune invalida! Te rog sa alegi din nou." 
+                                                    << endl;
+                                                    cout&lt;&lt;endl;
+                                                    sleep(2);
+                                            }
+                                        } while (op != 0);
 
                         </pre>
 
@@ -130,7 +272,7 @@
        </main>
         <footer>
             <div class="layout flex">
-                <code>Realizat de: <br/>Iancu David Ioan <br/>Brasoveanu Mara<br/>Popa Alexia<br/>Baleanu Erika</code>
+                <code>Realizat de:<br>Iancu David Ioan<br>Brașoveanu Mara Georgiana<br>Popa Alexia Ioana<br>Băleanu Erika Elena</code>
             </div>
         </footer>
     </body>

@@ -1,136 +1,152 @@
 <!DOCTYPE html>
 <html lang="ro">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Roy Floyd</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="./stilExemplu.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
-    <script src="./script.js"></script>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Roy Floyd</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <!-- Stilul extern -->
+  <link rel="stylesheet" href="stilExemplu.css">
+  
+  <!-- Fonturi Google -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <ul class="navigation-bar">
-            <li><a href="./index.html">Introducere</a></li>
-            <li><a href="./rationament.html">Rationamentul algoritmului</a></li>
-            <li><a href="./exemplificare-cod.html">Exemplificare cod</a></li>
-        </ul>
-    </header>
-    <main id="main">
-        <div class="layout">
-            <div class="content">
-                <h1>Harta - Algoritmul Roy-Floyd</h1>
+  <!-- Meniu navigație -->
+  <header>
+    <ul class="navigation-bar">
+      <li><a href="./index.html">Introducere</a></li>
+      <li><a href="./rationament.html">Raționamentul algoritmului</a></li>
+      <li><a href="./exemplificare-cod.html">Exemplificare cod</a></li>
+      <li class="download-btn">
+        <a href="program.zip" download>Descarcă programul</a>
+      </li>
+    </ul>
+  </header>
+  
+  <main>
+    <div class="container">
+      <h1>Harta - Algoritmul Roy-Floyd</h1>
 
-                <div class="code-container">
-                    <div class="controls">
-                        <label for="start">Punct de plecare:</label>
-                        <select id="start" class="styled-select"></select>
-                        <label for="end">Destinație:</label>
-                        <select id="end" class="styled-select"></select>
-                        <button class="button" onclick="calculateRoute()">Calculează</button>
-                    </div>
-                    <div id="canvas-container">
-                        <canvas id="mapCanvas" width="600" height="400"></canvas>
-                    </div>
-                </div>
-            </div>
+      <!-- Container orizontal cu 3 coloane: Drop-down, Rezultat, Legendă -->
+      <div class="controls-result-legend">
+        
+        <!-- Caseta de meniuri (dropdown + buton) -->
+        <div class="controls-box">
+          <h2>Drum Minim</h2>
+          <label for="start">Punct de plecare:</label>
+          <select id="start" class="styled-select"></select>
+          
+          <label for="end">Destinație:</label>
+          <select id="end" class="styled-select"></select>
+          
+          <button class="button" onclick="calculateRoute()">Calculează</button>
         </div>
-    </main>
 
-    <script>
-        const locations = ["Acasă", "Magazin", "Stație Maxi", "Benzinărie", "Spital", "Parc", "Farmacie"];
-        const adjacencyMatrix = [
-            [0, 2, 5, 0, 0, 0, 0],
-            [2, 0, 3, 2, 0, 0, 0],
-            [5, 3, 0, 0, 2, 0, 0],
-            [0, 2, 0, 0, 3, 4, 0],
-            [0, 0, 2, 3, 0, 0, 1],
-            [0, 0, 0, 4, 0, 0, 2],
-            [0, 0, 0, 0, 1, 2, 0]
-        ];
+        <!-- Caseta de rezultat, centrată -->
+        <div class="result-box" id="result-box">
+          <h2>Rezultat</h2>
+          <p id="result-text">Distanța minimă va apărea aici.</p>
+        </div>
+        
+        <!-- Legenda nodurilor -->
+        <div class="legend-box">
+          <h2>Legendă</h2>
+          <ul>
+            <li><strong>Nod 1</strong> - Acasă</li>
+            <li><strong>Nod 2</strong> - Loc de muncă</li>
+            <li><strong>Nod 3</strong> - Magazin</li>
+            <li><strong>Nod 4</strong> - Spital</li>
+            <li><strong>Nod 5</strong> - Parc</li>
+            <li><strong>Nod 6</strong> - Farmacie</li>
+          </ul>
+        </div>
 
-        function initDropdowns() {
-            const startSelect = document.getElementById("start");
-            const endSelect = document.getElementById("end");
-            locations.forEach((loc, index) => {
-                let option1 = new Option(loc, index);
-                let option2 = new Option(loc, index);
-                startSelect.add(option1);
-                endSelect.add(option2);
-            });
-        }
-
-        function floydWarshall(graph) {
-            let dist = JSON.parse(JSON.stringify(graph));
-            let n = graph.length;
-            for (let k = 0; k < n; k++) {
-                for (let i = 0; i < n; i++) {
-                    for (let j = 0; j < n; j++) {
-                        if (dist[i][k] && dist[k][j] && (dist[i][j] === 0 || dist[i][j] > dist[i][k] + dist[k][j])) {
-                            dist[i][j] = dist[i][k] + dist[k][j];
-                        }
-                    }
-                }
+      </div> <!-- end controls-result-legend -->
+      
+      <!-- Imaginea grafului -->
+      <div class="graph-container">
+        <img src="graf.png" alt="Harta Graf Roy-Floyd" class="graph-image">
+      </div>
+    </div>
+  </main>
+  
+  <!-- Script cu logica Floyd-Warshall -->
+  <script>
+    // Numele afișat în dropdown (Nod 1 - Nod 6)
+    const nodeNames = ["Nod 1", "Nod 2", "Nod 3", "Nod 4", "Nod 5", "Nod 6"];
+    
+    // Construim matricea de adiacență conform fișierului:
+    // 6 noduri, 10 arce:
+    // 1->2 (1), 1->4 (4), 2->5 (2), 2->4 (2), 3->1 (2), 3->2 (5),
+    // 3->5 (8), 4->3 (2), 6->1 (3), 6->4 (2)
+    
+    const n = 6;
+    const INF = Infinity;
+    // Inițializare cu INF și 0 pe diagonală
+    let adjacencyMatrix = Array.from({ length: n }, (_, i) =>
+      Array.from({ length: n }, (_, j) => (i === j ? 0 : INF))
+    );
+    
+    // Definim arcele (indexare 0-based)
+    adjacencyMatrix[0][1] = 1;  // Nod 1 -> Nod 2
+    adjacencyMatrix[0][3] = 4;  // Nod 1 -> Nod 4
+    adjacencyMatrix[1][4] = 2;  // Nod 2 -> Nod 5
+    adjacencyMatrix[1][3] = 2;  // Nod 2 -> Nod 4
+    adjacencyMatrix[2][0] = 2;  // Nod 3 -> Nod 1
+    adjacencyMatrix[2][1] = 5;  // Nod 3 -> Nod 2
+    adjacencyMatrix[2][4] = 8;  // Nod 3 -> Nod 5
+    adjacencyMatrix[3][2] = 2;  // Nod 4 -> Nod 3
+    adjacencyMatrix[5][0] = 3;  // Nod 6 -> Nod 1
+    adjacencyMatrix[5][3] = 2;  // Nod 6 -> Nod 4
+    
+    // Populăm dropdown-urile
+    function initDropdowns() {
+      const startSelect = document.getElementById("start");
+      const endSelect = document.getElementById("end");
+      nodeNames.forEach((name, index) => {
+        startSelect.add(new Option(name, index));
+        endSelect.add(new Option(name, index));
+      });
+    }
+    
+    // Algoritm Floyd-Warshall pentru matrice
+    function floydWarshall(graph) {
+      const dist = graph.map(row => row.slice()); // copiere
+      for (let k = 0; k < n; k++) {
+        for (let i = 0; i < n; i++) {
+          for (let j = 0; j < n; j++) {
+            if (dist[i][k] + dist[k][j] < dist[i][j]) {
+              dist[i][j] = dist[i][k] + dist[k][j];
             }
-            return dist;
+          }
         }
-
-        function calculateRoute() {
-            const start = parseInt(document.getElementById("start").value);
-            const end = parseInt(document.getElementById("end").value);
-            const distMatrix = floydWarshall(adjacencyMatrix);
-            alert(`Distanța minimă între ${locations[start]} și ${locations[end]} este ${distMatrix[start][end]}`);
-        }
-
-        function drawMap() {
-            const canvas = document.getElementById("mapCanvas");
-            const ctx = canvas.getContext("2d");
-            const points = [
-                {x: 100, y: 50},
-                {x: 250, y: 50},
-                {x: 400, y: 50},
-                {x: 150, y: 200},
-                {x: 300, y: 200},
-                {x: 450, y: 200},
-                {x: 300, y: 350}
-            ];
-
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.font = "16px Montserrat";
-            ctx.fillStyle = "white";
-
-            adjacencyMatrix.forEach((row, i) => {
-                row.forEach((val, j) => {
-                    if (val > 0) {
-                        ctx.beginPath();
-                        ctx.moveTo(points[i].x, points[i].y);
-                        ctx.lineTo(points[j].x, points[j].y);
-                        ctx.strokeStyle = "white"; // Linii albe
-                        ctx.stroke();
-                        let midX = (points[i].x + points[j].x) / 2;
-                        let midY = (points[i].y + points[j].y) / 2;
-                        ctx.fillText(val, midX, midY);
-                    }
-                });
-            });
-
-            points.forEach((p, index) => {
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, 10, 0, Math.PI * 2);
-                ctx.fillStyle = "white"; // Buline albe
-                ctx.fill();
-                ctx.fillText(locations[index], p.x + 12, p.y);
-            });
-        }
-
-        window.onload = function() {
-            initDropdowns();
-            drawMap();
-        };
-    </script>
+      }
+      return dist;
+    }
+    
+    // Căutăm distanța minimă și actualizăm caseta de rezultat
+    function calculateRoute() {
+      const start = parseInt(document.getElementById("start").value);
+      const end = parseInt(document.getElementById("end").value);
+      
+      const distMatrix = floydWarshall(adjacencyMatrix);
+      const distance = distMatrix[start][end];
+      
+      const resultText = document.getElementById("result-text");
+      if (distance === INF) {
+        resultText.textContent = `Nu există drum de la ${nodeNames[start]} la ${nodeNames[end]}.`;
+      } else {
+        resultText.textContent = `Distanța minimă între ${nodeNames[start]} și ${nodeNames[end]} este ${distance}.`;
+      }
+    }
+    
+    // Inițializare la încărcarea paginii
+    window.onload = initDropdowns;
+  </script>
 </body>
 </html>

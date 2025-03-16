@@ -15,8 +15,11 @@
         <nav>
             <ul class="navigation-bar">
                 <li><a href="./index.html#main">Introducere</a></li>
-                <li><a href="./rationament.html">Rationamentul algoritmului</a></li>
+                <li><a href="./rationament.html">Raționamentul algoritmului</a></li>
                 <li><a href="./exemplificare-cod.html">Exemplificare cod</a></li>
+                <li class="download-btn">
+                    <a href="program.zip" download>Descarcă programul</a>
+                  </li>
             </ul>
         </nav>
     </header>
@@ -26,8 +29,21 @@
             <div class="content">
                 <h1 class="mb">ROY-FLOYD</h1>
                 <h3><b>Despre algoritmul Roy-Floyd</b></h3>
-                <p>În jurul anului 1960, a fost descoperit un algoritm pentru drumuri în grafuri orientate de către trei oameni de știință: Robert Floyd, Bernard Roy și Stephen Warshall. Roy-Floyd determină distanțele și drumurile minime între oricare două noduri dintr-un graf.</p>
-                <p>Pentru determinarea un drum minim între două noduri este echivalentă cu a determina un lanț cu număr minim de muchii între cele două noduri.</p>
+                    <p>În jurul anului 1960, a fost descoperit un algoritm pentru drumuri în grafuri orientate de către trei oameni de știință: Robert Floyd, Bernard Roy și Stephen Warshall. Roy-Floyd determină distanțele și drumurile minime între oricare două noduri dintr-un graf.</p>
+                    <p>Pentru grafurile care nu au costuri asociate muchiilor (echivalent cu faptul că toate muchiile au
+                    același cost) determinarea unui drum minim între două noduri este echivalentă cu a determina
+                    un lanț cu număr minim de muchii între cele două noduri. Acest lucru este cunoscut că poate fi
+                    realizat folosind un algoritm BFS.
+                    <p>Pentru cazul în care muchiile au asociate costuri ne interesează un lanț în care suma costurilor
+                    muchiilor este minimă.</p>
+                    <p>Cei mai populari algoritmi pentru a rezliza acest lucru sunt Roy-Floyd, Dijkstra și
+                    Bellman-Ford.</p>
+                    <p>Algoritmii Dijkstra și Bellman-Ford permit găsirea unui drum de cost minim între un nod fixat și
+                    toate celelalte.</p>
+                    <p>Algoritmul Roy-Floyd permite găsirea câte unui drum de cost minim între oricare două noduri,
+                    și din acest motiv el rulează cu un timp de calcul mai mare. Are în schimb avantajul că se scrie
+                    mult mai ușor. Vom încerca să explicăm în acest material modul de funcționare pentru acest
+                    algoritm </p>
             </div>
             <div class="content">
                 <h2>Caracteristici:</h2>
@@ -48,12 +64,27 @@
                     <li><strong>Logistică și transport</strong> - Optimizarea rutelor pentru livrări (Amazon, DHL, FedEx).</li>
                 </ul>
             </div>
+            <div class="content">
+                <h3><b>Cerința problemei</b></h3>
+                            <p>Dan este în vizită la nepoţii lui care locuiesc într-un oraş aglomerat, cu multe străzi întortocheate. Bărbatul dorește să ajungă cât mai repede în locurile
+                              în care are nevoie și evitând aglomerația. Găsește ruta potrivită știind că drumul de cost minim este cel mai scurt drum de la un punct la altul, iar costul  
+                              reprezintă distanța pe care se întinde strada. Se dau <b>n </b>(numărul punctelor de plecare) şi <b>m </b>(numărul străzilor pe care se poate deplasa). Atât datele acestea, cât
+                              și punctele între care se formează strada sunt citite din fișierul <b>fin.txt.</b>.
+
+                              <p><b>a. Aflați drumurile de cost minim între locurile în care Dan poate ajunge și afișați acestea pe ecran;</b></p>
+                              <p><b>b. Afișați cel mai eficient drum pe care poate merge Dan plecând de la locația dorită la destinație; </b></p> 
+                              <p><b>c. Calculează numărul de kilometri pe care îi parcurge Dan pe drumul de cost minim dintre punctele între care se deplaseză;</b></p>
+                              <p><b>d. Care este timpul necesar pentu a ajunge de la un punct la altul, pe drumul cu cea mai mică distanța?</b></p>
+                                
+
+                            </p>
+            </div>
         </div>
     </main>
     
     <footer>
         <div class="layout flex">
-            <code>Realizat de:<br>Iancu David Ioan<br>Brasoveanu Mara<br>Popa Alexia<br>Baleanu Erika</code>
+            <code>Realizat de:<br>Iancu David Ioan<br>Brașoveanu Mara Georgiana<br>Popa Alexia Ioana<br>Băleanu Erika Elena</code>
         </div>
     </footer>
 </body>
