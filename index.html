@@ -34,23 +34,23 @@
                     același cost) determinarea unui drum minim între două noduri este echivalentă cu a determina
                     un lanț cu număr minim de muchii între cele două noduri. Acest lucru este cunoscut că poate fi
                     realizat folosind un algoritm BFS.
-                    <p>Pentru cazul în care muchiile au asociate costuri ne interesează un lanț în care suma costurilor
+                    <p>Pentru cazul în care muchiile au asociate costuri, ne interesează un lanț în care suma costurilor
                     muchiilor este minimă.</p>
-                    <p>Cei mai populari algoritmi pentru a rezliza acest lucru sunt Roy-Floyd, Dijkstra și
+                    <p>Cei mai populari algoritmi pentru a realiza acest lucru sunt Roy-Floyd, Dijkstra și
                     Bellman-Ford.</p>
                     <p>Algoritmii Dijkstra și Bellman-Ford permit găsirea unui drum de cost minim între un nod fixat și
                     toate celelalte.</p>
                     <p>Algoritmul Roy-Floyd permite găsirea câte unui drum de cost minim între oricare două noduri,
                     și din acest motiv el rulează cu un timp de calcul mai mare. Are în schimb avantajul că se scrie
                     mult mai ușor. Vom încerca să explicăm în acest material modul de funcționare pentru acest
-                    algoritm </p>
+                    algoritm. </p>
             </div>
             <div class="content">
                 <h2>Caracteristici:</h2>
                 <ul>
-                    <li>Rulează cu un timp de calcul mai mare, deoarece permite găsirea unui drum minim între orice două noduri.</li>
+                    <li>Rulează cu un timp de calcul mai mare, deoarece permite găsirea unui drum minim între oricare două noduri.</li>
                     <li>Memoria alocată este de ordin <em>n²</em> (numărul de perechi de noduri).</li>
-                    <li>Roy-Floyd calculează drumul dintre orice două noduri, spre deosebire de Dijkstra, care determină doar de la un nod sursă la toate celelalte.</li>
+                    <li>Roy-Floyd calculează drumul dintre oricare două noduri, spre deosebire de Dijkstra, care determină doar de la un nod sursă la toate celelalte.</li>
                     <li>Poate gestiona drumuri indirecte, folosind noduri intermediare.</li>
                 </ul>
             </div>
@@ -67,14 +67,14 @@
             <div class="content">
                 <h3><b>Cerința problemei</b></h3>
                             <p>Dan este în vizită la nepoţii lui care locuiesc într-un oraş aglomerat, cu multe străzi întortocheate. Bărbatul dorește să ajungă cât mai repede în locurile
-                              în care are nevoie și evitând aglomerația. Găsește ruta potrivită știind că drumul de cost minim este cel mai scurt drum de la un punct la altul, iar costul  
+                              în care are nevoie, evitând aglomerația. Găsește ruta potrivită știind că drumul de cost minim este cel mai scurt drum de la un punct la altul, iar costul  
                               reprezintă distanța pe care se întinde strada. Se dau <b>n </b>(numărul punctelor de plecare) şi <b>m </b>(numărul străzilor pe care se poate deplasa). Atât datele acestea, cât
                               și punctele între care se formează strada sunt citite din fișierul <b>fin.txt.</b>.
 
-                              <p><b>a. Aflați drumurile de cost minim între locurile în care Dan poate ajunge și afișați acestea pe ecran;</b></p>
+                              <p><b>a. Aflați drumurile de cost minim între locurile în care Dan poate ajunge și afișați-le pe ecran;</b></p>
                               <p><b>b. Afișați cel mai eficient drum pe care poate merge Dan plecând de la locația dorită la destinație; </b></p> 
                               <p><b>c. Calculează numărul de kilometri pe care îi parcurge Dan pe drumul de cost minim dintre punctele între care se deplaseză;</b></p>
-                              <p><b>d. Care este timpul necesar pentu a ajunge de la un punct la altul, pe drumul cu cea mai mică distanța?</b></p>
+                              <p><b>d. Care este timpul necesar pentu a ajunge de la un punct la altul, pe drumul cu cea mai mică distanță?</b></p>
                                 
 
                             </p>
